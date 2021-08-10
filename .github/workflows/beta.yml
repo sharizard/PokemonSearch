@@ -15,8 +15,11 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Run linter
-        run: ./gradlew lintDebug
+      - name: Format the code
+        run: ./gradlew ktlintFormat
+
+      - name: Lint the code
+        run: ./gradlew ktlintCheck
 
       - name: Upload the HTML lint report
         uses: actions/upload-artifact@v2
@@ -90,7 +93,7 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-          
+
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
