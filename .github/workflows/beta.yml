@@ -21,12 +21,6 @@ jobs:
       - name: Lint the code
         run: ./gradlew ktlintCheck
 
-      - name: Upload the HTML lint report
-        uses: actions/upload-artifact@v2
-        with:
-          name: lint.html
-          path: app/build/reports/lint-results-debug.html
-  
   unit-test:
    needs: [lint]
    runs-on: ubuntu-latest
